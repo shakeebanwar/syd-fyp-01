@@ -26,9 +26,7 @@ SECRET_KEY = 'django-insecure-d_h457w^hrkg!u+3n34-k^4p=9$d!8yinle8_h-)$rp-0r&0qw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'localhost:8000']
-
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -95,22 +93,22 @@ ASGI_APPLICATION = 'djangoauth.asgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': config('ENGINE'),
-        'NAME': config('NAME'),
-        'USER': config('USER'),
-        'PASSWORD': config('PASSWORD'),
-        'HOST': config('HOST'),
-        'PORT': config('PORT'),
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': config('ENGINE'),
+#         'NAME': config('NAME'),
+#         'USER': config('USER'),
+#         'PASSWORD': config('PASSWORD'),
+#         'HOST': config('HOST'),
+#         'PORT': config('PORT'),
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 CHANNEL_LAYERS = {
