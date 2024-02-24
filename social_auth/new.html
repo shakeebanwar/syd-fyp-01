@@ -1,0 +1,20 @@
+<html lang="en">
+    <head>
+        <meta name="google-signin-scope" content="profile email" />
+        <meta name="google-signin-client_id" 
+        content="1067773644196-8i0pb69rv3h510ft05brcqbtkpcf866b.apps.googleusercontent.com"
+        />
+        <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+    </head>
+    <body>
+        <div class="g-sigin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+        <script>
+            function onSignIn(googleUser){
+                var profile = googleUser.getBasicProfile();
+                console.log("ID:" + profile.getId());
+                var id_token=googleUser.getAuthResponse().id_token;
+                console.log("ID Token: " + id_token);
+            }
+        </script>
+    </body>
+</html>
