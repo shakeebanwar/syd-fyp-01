@@ -103,6 +103,9 @@ ASGI_APPLICATION = 'djangoauth.asgi.application'
 #         'PORT': config('PORT'),
 #     }
 # }
+print("------------------database",config('HOST'))
+print("------------------------",config('OPENAI_API_KEY'))
+print("-------------------------",config('STRIPE_KEY_WEB_HOOK'))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -202,7 +205,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "https://bnr360-jawadahmed.vercel.app",
     "https://bnr360-five.vercel.app",
+    "https://bnr360.live"
 ]
+CSRF_TRUSTED_ORIGINS = ["https://api.bnr360.live"]
 # Email Configuration
 EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'smtp.gmail.com'

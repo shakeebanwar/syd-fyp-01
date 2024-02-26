@@ -69,6 +69,12 @@ class CreateStripeAccount(APIView):
     permission_classes = [IsAuthenticated]
     def post(self, request):
         try:
+            existing_stripe_account = StripeAccount.objects.filter(user=request.user).first()
+            if existing_stripe_account:
+                # If an account already exists, return its details
+                return Response({
+                    'account_id': existing_stripe_account.account_id,
+                }, status=status.HTTP_200_OK)
             # Create a Stripe account
             account = stripe.Account.create(
                 type="express",  # You can change the account type as needed
@@ -114,8 +120,8 @@ class CreateStripeAccountLink(APIView):
             # Create a Stripe account link using the retrieved account_id
             account_link = stripe.AccountLink.create(
                 account=account_id,
-                refresh_url="https://bnr360-five.vercel.app/freelancer/profile/",
-                return_url="https://bnr360-five.vercel.app/freelancer/profile/",
+                refresh_url="https://bnr360.live/freelancer/profile",
+                return_url="https://bnr360.live/freelancer/profile",
                 type="account_onboarding",
             )
 
@@ -164,8 +170,8 @@ class CreateStripeCheckoutSession(APIView):
         # Other relevant metadata
                     }
                 },
-                success_url="https://bnr360-five.vercel.app/client/home",
-                cancel_url="https://bnr360-five.vercel.app/client/home",
+                success_url="https://bnr360.live/client/home",
+                cancel_url="https://bnr360.live/client/home",
                 )
             job.intent_id = session.payment_intent
             job.save()
